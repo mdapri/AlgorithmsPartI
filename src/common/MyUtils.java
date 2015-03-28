@@ -26,6 +26,12 @@ public class MyUtils {
     public static void Dump(Object[] list) {
         Dump(list, 0, list.length-1);
     }
+    public static void Dump(int[] list) {
+        Integer[] vals= new Integer[list.length];
+        for(int i=0;i<list.length;i++)
+            vals[i]=list[i];
+        Dump(vals, 0, list.length-1);
+    }
 
     public static boolean isSorted(Comparable[] list, int lo,int hi) {
         boolean sorted = true;
