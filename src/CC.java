@@ -4,38 +4,50 @@ import common.MyUtils;
  * Conneccted component on an undurected graph
  */
 public class CC {
+
+    private boolean trace=false;
     // the predecessor of the node
     private int[] component;
     int components;
     private Graph graph;
     int start;
 
-
     public CC(Graph g) {
+        this(g,false);
+    }
+
+    public CC(Graph g,boolean traceFlag) {
 
         graph=g;
         components=0;
+        trace=traceFlag;
         component = new int[g.V()];
         for (int i=0; i<g.V();i++)
         {
             component[i]=-1;
         }
-        for(int i =0;i<g.V();i++){
+        for(int i =0;i<graph.V();i++){
             if(component[i]==-1)
             {
-                FindComponentFrom(g, i);
+                FindComponentFrom(graph, i);
                 components++;
             }
         }
     }
 
     private void FindComponentFrom(Graph g, int i) {
-        DepthFirstPaths d= new DepthFirstPaths(g,i);
+        DepthFirstPaths d;
+
+        if(trace)
+            d= new DepthFirstPaths(g,i,true);
+        else
+            d=new DepthFirstPaths(g,i);
+
         for(int j =0;j<g.V();j++){
             if (d.hasPathTo(j))
                 component[j]=components;
         }
-        System.out.println(d.toString());
+       if(trace) System.out.println(d.toString());
     }
 
     public int count()    { return components; }
@@ -54,6 +66,8 @@ public class CC {
         return b.toString();
 
     }
+
+
 
     ////////////////////////////////////////////
 
@@ -89,6 +103,7 @@ public class CC {
 
 
         CC cc = new CC(g);
+
         MyUtils.Assert(cc.id(1) == 0, "!Test01");
         MyUtils.Assert(cc.id(0) ==0, "!Test02");
         MyUtils.Assert(cc.id(2) ==0, "!Test03");
@@ -99,7 +114,7 @@ public class CC {
     }
 
     private static void test_Quiz(){
-        System.out.println("*test_Connected");
+        System.out.println("*test_Quiz");
         int size=0;
         Graph g;
         //replicate the graph  the slide
@@ -135,7 +150,8 @@ public class CC {
 
 
 
-        CC cc = new CC(g);
+        CC cc = new CC(g,true);
+
         System.out.println(cc.toString());
         /*
         A 0; 0;

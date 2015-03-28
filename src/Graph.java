@@ -4,7 +4,7 @@
  */
 import common.MyUtils;
 
-public class Graph {
+public class Graph implements IGraph {
 
     private int _vertex;
     private  int _edges;

@@ -9,6 +9,8 @@ import java.util.Stack;
  */
 public class DepthFirstPaths {
 
+    private boolean trace=false;
+
     int timer;
     // time the dfs enters the node
     private int in[];
@@ -18,14 +20,18 @@ public class DepthFirstPaths {
 
     // the predecessor of the node
     private int[] toEdge;
-    private Graph graph;
-    Integer start;
+    private IGraph graph;
+    int start;
     private boolean marked[];
 
+    public DepthFirstPaths(IGraph g, int s){
+        this(g,s,false);
+    }
 
-    public DepthFirstPaths(Graph g, int s) {
+    public DepthFirstPaths(IGraph g, int s, boolean traceFlag) {
         start=s;
         graph=g;
+        trace=traceFlag;
         timer=0;
         in = new int[g.V()];
         out = new int[g.V()];
@@ -41,6 +47,8 @@ public class DepthFirstPaths {
 
         dfs(graph,start);
     }
+
+
 
     public boolean hasPathTo(int v){
         return marked[v];
@@ -65,7 +73,8 @@ public class DepthFirstPaths {
         return out[v];
     }
 
-    private void dfs(Graph g,int v ){
+    private void dfs(IGraph g,int v ){
+        if(trace) System.out.println("dfs "+v);
         in[v] =timer++;
         marked[v]=true;
         for(int i:g.adj(v)){
@@ -73,7 +82,11 @@ public class DepthFirstPaths {
                 toEdge[i] = v;
                 dfs(g, i);
             }
+            else if(trace) System.out.println("check "+i);
         }
+
+        if(trace) System.out.println("done "+v);
+
         out[v]=timer++;
     }
 

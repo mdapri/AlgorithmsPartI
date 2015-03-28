@@ -3,7 +3,7 @@ import common.MyUtils;
 /**
  * Created by maurizio.dapri on 3/28/2015.
  */
-public class Digraph {
+public class Digraph implements IGraph {
 
     private int _vertex;
     private  int _edges;
@@ -68,14 +68,28 @@ public class Digraph {
         return b.toString();
     }
 
+    /**
+     *
+     * @return a graph with edges reverted
+     */
+    public Digraph reverse(){
+        Digraph reversed=  new Digraph(_vertex);
+        for (int v=0;v<_vertex;v++){
+            for(int w:adj(v) ){
+                reversed.addEdge(w,v);
+            }
+        }
+        return  reversed;
+    }
     ///////////////////////////////
     // tet section
     //
 
     public static void main(String[] args){
         System.out.println("START");
-        test_Constructor();
-        test_add();
+        //test_Constructor();
+        //test_add();
+        test_revert();
 
         System.out.println("END");
 
@@ -115,5 +129,16 @@ public class Digraph {
 
         System.out.println(g.toString());
 
+    }
+
+    private static void test_revert() {
+        System.out.println("*test_revert");
+        Digraph g = new Digraph(4);
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(2, 3);
+        System.out.println(g.toString());
+        Digraph r = g.reverse();
+        System.out.println(r.toString());
     }
 }
