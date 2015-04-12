@@ -1,3 +1,5 @@
+package P2.W1;
+
 /**
  * Interface representing directed and undirected graph
  */

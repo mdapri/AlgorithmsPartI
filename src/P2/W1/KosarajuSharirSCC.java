@@ -1,3 +1,5 @@
+package P2.W1;
+
 /**
  * Strongly connected component of a directed graph
  */

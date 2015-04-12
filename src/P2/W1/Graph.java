@@ -1,8 +1,11 @@
+package P2.W1;
+
 /**
- * Undirected Graph via adjacency matrix representation
+ * Undirected P2.W1.Graph via adjacency matrix representation
  * Princeton 2, Week 1
  */
 import common.MyUtils;
+import common.datastruct.*;
 
 public class Graph implements IGraph {
 
