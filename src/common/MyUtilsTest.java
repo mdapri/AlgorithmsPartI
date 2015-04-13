@@ -1,13 +1,18 @@
 package common;
 
+import common.datastruct.Queue;
+
 /**
  * Created by maurizio.dapri on 2/21/2015.
  */
 public class MyUtilsTest {
 
     public static void main(String[] args) {
-        test_allBigger();
-        test_allSmaller();
+        System.out.println("//START");
+//        test_allBigger();
+//        test_allSmaller();
+        test_AssertListEqual();
+        System.out.println("//END");
     }
 
 
@@ -83,4 +88,60 @@ public class MyUtilsTest {
         //all bigger shoudl now be true, because equal is admitted
         MyUtils.Assert(MyUtils.allSmaller(key,vector,start,end,orEqual), "Test4: "+ key +", " + start +", "+ end +", "+ orEqual    );
     }
+
+    private static void test_AssertListEqual(){
+        System.out.println("*test_AssertListEqual");
+        Queue<Integer> expected = new Queue<Integer>();
+        Queue<Integer> actual = new Queue<Integer>();
+        expected.enqueue(1);
+        expected.enqueue(2);
+        expected.enqueue(3);
+        expected.enqueue(4);
+
+        actual.enqueue(1);
+        actual.enqueue(2);
+        actual.enqueue(3);
+        actual.enqueue(4);
+
+        MyUtils.AssertListEqual( actual,  expected,  "!Test_01");
+
+        //different element, same length
+        actual = new Queue<Integer>();
+        actual.enqueue(1);
+        actual.enqueue(3);
+        actual.enqueue(2);
+        actual.enqueue(4);
+        MyUtils.AssertListEqual( actual,  expected,  "!Test_02");
+
+        //same element, different length
+        actual = new Queue<Integer>();
+        actual.enqueue(1);
+        actual.enqueue(2);
+        actual.enqueue(3);
+
+        MyUtils.AssertListEqual( actual,  expected,  "!Test_03");
+
+        //same element, different length
+        actual = new Queue<Integer>();
+        actual.enqueue(1);
+        actual.enqueue(2);
+        actual.enqueue(3);
+        actual.enqueue(4);
+        actual.enqueue(5);
+
+        MyUtils.AssertListEqual( actual,  expected,  "!Test_04");
+
+        //different element, different length
+        actual = new Queue<Integer>();
+        actual.enqueue(1);
+        actual.enqueue(2);
+        actual.enqueue(4);
+        actual.enqueue(3);
+        actual.enqueue(5);
+
+        MyUtils.AssertListEqual( actual,  expected,  "!Test_05");
+
+
+    }
+
 }

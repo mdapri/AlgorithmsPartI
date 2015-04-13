@@ -1,5 +1,6 @@
 package common;
 
+import java.util.Iterator;
 import java.util.Objects;
 
 /**
@@ -89,6 +90,39 @@ public class MyUtils {
         equals = actual.equals(expected);
         if (!equals){
             System.out.println(message + " Actual was: " + toStringSafe(actual)+". Expected was: " + toStringSafe(expected));// stdout.print(message);
+        }
+    }
+
+    public static void AssertListEqual(Iterable actual, Iterable expected, String message) {
+        boolean equals=true;
+        boolean equalLength = true;
+        Iterator iteratorExp= expected.iterator();
+        Iterator iteratorAct= actual.iterator();
+        Object elmActual;
+        Object elmExpected;
+        while(iteratorAct.hasNext() && equals) {
+            if(!iteratorExp.hasNext()){
+                equalLength=false;
+                break;
+            }
+            else
+            {
+                elmActual= iteratorAct.next();
+                elmExpected= iteratorExp.next();
+                equals= elmActual.equals(elmExpected);
+            }
+        }
+        //exit because iteratorAct has finished. Check for different length, that means that iteratorExp.hasNext() also has no more items
+        if(iteratorExp.hasNext() )
+            equalLength=false;
+
+        if (!equals){
+            System.out.println(message);
+            System.out.println("/ Actual was:   " + toStringSafe(actual));
+            System.out.println("/ Expected was: " + toStringSafe(expected));// stdout.print(message);
+        }
+        if(!equalLength){
+            System.out.println(message + " length differs");
         }
     }
 

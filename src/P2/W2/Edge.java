@@ -1,5 +1,7 @@
 package P2.W2;
 
+import java.util.Objects;
+
 /**
  * a model for a weighted edge
  */
@@ -35,6 +37,9 @@ public class Edge implements Comparable<Edge> {
         else return this.v;
     }
 
+    public double weight(){
+        return weight;
+    }
 
     @Override
     public int compareTo(Edge o) {
@@ -43,4 +48,16 @@ public class Edge implements Comparable<Edge> {
         else
             return 0;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        Edge otherVertex  =(Edge)obj;
+        return v==otherVertex.v&& w==otherVertex.w&& weight==otherVertex.weight;
+    }
+
+    @Override
+    public String toString(){
+       return  String.format("%d-%d %f" ,v,w,weight);
+    }
+
 }

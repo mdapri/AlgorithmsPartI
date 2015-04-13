@@ -34,8 +34,31 @@ public class EdgeWeightedGraph implements IGraphEdge{
         return adj[vertex];
     }
 
+
+    /**
+     * Returns all edges in the edge-weighted graph.
+     * To iterate over the edges in the edge-weighted graph, use foreach notation:
+     * <tt>for (Edge e : G.edges())</tt>.
+     * @return all edges in the edge-weighted graph as an Iterable.
+     */
     @Override
-    public Iterable<Edge> edges(){return null;}
+    public Iterable<Edge> edges() {
+        Bag<Edge> list = new Bag<Edge>();
+        for (int v = 0; v < _vertex; v++) {
+            int selfLoops = 0;
+            for (Edge e : adj(v)) {
+                if (e.other(v) > v) {
+                    list.add(e);
+                }
+                // only add one copy of each self loop (self loops will be consecutive)
+                else if (e.other(v) == v) {
+                    if (selfLoops % 2 == 0) list.add(e);
+                    selfLoops++;
+                }
+            }
+        }
+        return list;
+    }
 
     @Override
     public int V() {
