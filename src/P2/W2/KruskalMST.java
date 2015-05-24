@@ -6,11 +6,13 @@ import common.datastruct.Queue;
 import W1.UF;
 import W4.MinPQ;
 
-import java.util.Iterator;
+
 
 /**
  * Consider edges in ascending order of weight.
  * Add next edge to tree T unless doing so would create a cycle.
+ *
+ * running time (E=edges V=Vertices) E*logE
  */
 public class KruskalMST implements IMST {
 

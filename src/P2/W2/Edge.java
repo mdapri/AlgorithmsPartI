@@ -1,7 +1,5 @@
 package P2.W2;
 
-import java.util.Objects;
-
 /**
  * a model for a weighted edge
  */
@@ -23,13 +21,13 @@ public class Edge implements Comparable<Edge> {
         this.weight=weight;
     }
     /**
-     * either endompoint
+     * either endpoint
      * @return
      */
     public int either(){ return v;}
 
     /**
-     * the other endompoint
+     * the other endpoint
      * @return
      */
     public int other(int vertex) {
