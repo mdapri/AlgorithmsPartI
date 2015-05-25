@@ -22,7 +22,7 @@ import java.util.NoSuchElementException;
  *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/13stacks">Section 1.3</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  */
-public class Queue<Item> implements Iterable<Item>{
+public class Queue<Item> implements Iterable<Item>, IQueue<Item>{
 
     public Queue(){
         N=0;
@@ -77,8 +77,8 @@ public class Queue<Item> implements Iterable<Item>{
     public int size() {return N;}
 
     /**
-     * Returns an iterator to this quweue that iterates through the items in FIFO order.
-     * @return an iterator to this quweue that iterates through the items in FIFO order.
+     * Returns an iterator to this queue that iterates through the items in FIFO order.
+     * @return an iterator to this queue that iterates through the items in FIFO order.
      */
     public Iterator<Item> iterator(){
 

@@ -47,6 +47,9 @@ public class Stack<Item> implements Iterable<Item>  {
 
     }
 
+    public int Count(){
+        return N;
+    }
 
     /**
      * Returns an iterator to this stack that iterates through the items in LIFO order.
